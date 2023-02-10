@@ -7,6 +7,7 @@ export interface Member {
     gender: string;
     dateOfBirth: Date;
     photoUrl: string;
+    introduction: string;
     city: string;
     country: string;
     created: Date;
