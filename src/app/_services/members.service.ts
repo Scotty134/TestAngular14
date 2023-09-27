@@ -58,7 +58,7 @@ export class MembersService {
     params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy);
 
-    return this.getPaginatedResult<Member[]>(this.baseUrl + 'user',params).pipe(map(response => {
+    return this.getPaginatedResult<Member[]>(this.baseUrl + 'users',params).pipe(map(response => {
       this.memberCache.set(Object.values(userParams).join('-'), response);
       return response;
       })
@@ -73,11 +73,11 @@ export class MembersService {
 
     //const member = this.members.find(x => x.userName === username);
     if (member) return of(member);
-    return this.http.get<Member>(this.baseUrl + 'user/' + username);
+    return this.http.get<Member>(this.baseUrl + 'users/' + username);
   }
 
   updateMember(member: Member) {
-    return this.http.put(this.baseUrl + 'user', member).pipe(
+    return this.http.put(this.baseUrl + 'users', member).pipe(
       map(() => {
         const index = this.members.indexOf(member);
         this.members[index] = { ...this.members[index], ...member };
@@ -91,6 +91,14 @@ export class MembersService {
 
   deletePhoto(photoId: number) {
     return this.http.delete(this.baseUrl + 'photo/delete-photo/' + photoId);
+  }
+
+  toggleLike(userName: string) {
+    return this.http.post(this.baseUrl + 'likes/' + userName, {});
+  }
+
+  getLikes(predicate: string) {
+    return this.http.get(this.baseUrl + 'likes?precicate=' + predicate);
   }
 
   private getPaginatedResult<T>(url: string, params: HttpParams) {
