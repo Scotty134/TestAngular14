@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-4">
         <div class="card">
-            <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.name}}"
+            <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}"
                 class="card-img-top img-thumbnail">
             <div class="card-body">
                 <div>
@@ -32,13 +32,13 @@
 
     <div class="col-8">
         <tabset class="member-tabset" #memberTabs>
-            <tab heading="About {{member.name}}" (selectTab)="onTabActivated($event)">
+            <tab heading="About {{member.knownAs}}" (selectTab)="onTabActivated($event)">
                 <h4>Description:</h4>
                 <p>Description should be here...</p>
             </tab>
             <tab heading="Interests" (selectTab)="onTabActivated($event)">
                 <h4>Interests:</h4>
-                <p>{{member.name}} is very interesting...</p>
+                <p>{{member.knownAs} is very interesting...</p>
             </tab>
             <tab heading="Photos" (selectTab)="onTabActivated($event)">
                 <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>

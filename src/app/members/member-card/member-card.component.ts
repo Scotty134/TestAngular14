@@ -18,7 +18,7 @@ export class MemberCardComponent implements OnInit {
 
   toggleLike (member: Member) {
     this.memberService.toggleLike(member.userName).subscribe({
-     next: () => this.toastrService.success('You have liked ' + member.name) 
+     next: () => this.toastrService.success('You have liked ' + member.knownAs) 
     });
   }
 }

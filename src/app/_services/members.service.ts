@@ -69,13 +69,13 @@ export class MembersService {
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])
       .find((member: Member) => member.userName == username);
-
     //const member = this.members.find(x => x.userName === username);
     if (member) return of(member);
     return this.http.get<Member>(this.baseUrl + 'users/' + username);
   }
 
   updateMember(member: Member) {
+    console.log(member);
     return this.http.put(this.baseUrl + 'users', member).pipe(
       map(() => {
         const index = this.members.indexOf(member);
