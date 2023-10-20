@@ -7,7 +7,7 @@ import { User } from '../_models/user';
 @Injectable({
   providedIn: 'root'
 })
-export class PrecenseService {
+export class PresenceService {
   hubUrl = environment.hubUrl;
   private hubConnection?: HubConnection;
 
@@ -15,7 +15,7 @@ export class PrecenseService {
 
   createHubConnection(user: User) {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl(this.hubUrl + 'precense', {
+      .withUrl(this.hubUrl + 'presence', {
         accessTokenFactory: () => user.token
       })
       .withAutomaticReconnect()
